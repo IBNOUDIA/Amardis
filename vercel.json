@@ -2,10 +2,12 @@
   "version": 2,
   "builds": [
     { "src": "index.html", "use": "@vercel/static" },
+    { "src": "CV_Amar_Dia_Analyste_Programmeur.pdf", "use": "@vercel/static" },
     { "src": "api/chat.js", "use": "@vercel/node" }
   ],
   "routes": [
     { "src": "/api/chat", "dest": "/api/chat.js" },
+    { "src": "/CV_Amar_Dia_Analyste_Programmeur.pdf", "dest": "/CV_Amar_Dia_Analyste_Programmeur.pdf" },
     { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
