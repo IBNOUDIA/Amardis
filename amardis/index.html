@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amar Dia – Programmeur-Analyste | amardia.ca</title>
+<meta name="description" content="Portfolio d'Amar Dia, Programmeur-Analyste Full Stack à Montréal. React, Node.js, Express, Python, MongoDB, MySQL, Kotlin, WordPress, IA.">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0f1623;--blue:#1a3a6b;--blue-l:#2e5090;--accent:#c9973a;--cream:#f8f5ef;--creamD:#ede9e0;--gray:#8a8a8a;--white:#ffffff;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);overflow-x:hidden;}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content:space-between;align-items:center;padding:1rem 3rem;background:rgba(248,245,239,0.96);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,0.06);}
+.nav-logo{font-family:'DM Serif Display',serif;font-size:1.2rem;color:var(--blue);text-decoration:none;}
+.nav-links{display:flex;gap:1.3rem;list-style:none;align-items:center;}
+.nav-links a{text-decoration:none;font-size:0.7rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink);opacity:0.6;transition:opacity 0.2s;}
+.nav-links a:hover{opacity:1;color:var(--blue);}
+.nav-cv{background:var(--accent)!important;color:var(--white)!important;opacity:1!important;padding:0.38rem 0.8rem;border-radius:2px;}
+.nav-right{display:flex;align-items:center;gap:0.9rem;}
+.lang-toggle{display:flex;background:var(--creamD);border-radius:20px;padding:3px;gap:2px;}
+.lang-btn{background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.7rem;font-weight:700;padding:0.28rem 0.65rem;border-radius:16px;color:var(--gray);transition:all 0.2s;}
+.lang-btn.active{background:var(--blue);color:var(--white);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none;}
+.hamburger span{display:block;width:24px;height:2px;background:var(--blue);transition:all 0.3s;}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.mobile-menu{display:none;position:fixed;inset:0;background:var(--cream);z-index:150;flex-direction:column;justify-content:center;align-items:center;gap:1.6rem;}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{text-decoration:none;font-size:1.2rem;font-weight:600;color:var(--blue);padding:0.4rem 0;border-bottom:2px solid transparent;transition:border-color 0.2s;}
+.mobile-menu a:hover{border-color:var(--accent);}
+.m-cv{background:var(--accent)!important;color:var(--white)!important;padding:0.7rem 2rem!important;border-radius:2px!important;border-bottom:none!important;margin-top:0.5rem;}
+.mob-lang{display:flex;gap:0.5rem;margin-top:0.5rem;}
+.mob-lang-btn{background:var(--creamD);border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.88rem;font-weight:700;padding:0.45rem 1.1rem;border-radius:20px;color:var(--gray);}
+.mob-lang-btn.active{background:var(--blue);color:var(--white);}
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:8rem 3rem 4rem;gap:3rem;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;top:-20%;right:-10%;width:60vw;height:120vh;background:radial-gradient(ellipse,rgba(26,58,107,0.06) 0%,transparent 70%);pointer-events:none;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:0.7rem;font-size:0.7rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem;}
+.hero-eyebrow::before{content:'';width:26px;height:2px;background:var(--accent);}
+.hero h1{font-family:'DM Serif Display',serif;font-size:clamp(2.8rem,5vw,4.8rem);line-height:1.05;color:var(--blue);margin-bottom:0.4rem;}
+.hero h1 em{font-style:italic;color:var(--accent);}
+.hero-sub{font-size:0.93rem;font-weight:300;color:var(--gray);margin-bottom:1.4rem;}
+.hero-desc{font-size:0.92rem;line-height:1.75;opacity:0.75;max-width:440px;margin-bottom:2.2rem;}
+.hero-btns{display:flex;flex-wrap:wrap;gap:0.7rem;align-items:center;}
+.btn-p{display:inline-flex;align-items:center;gap:0.5rem;background:var(--blue);color:var(--white);padding:0.82rem 1.65rem;border-radius:2px;text-decoration:none;font-size:0.78rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;transition:background 0.2s,transform 0.2s;}
+.btn-p:hover{background:var(--blue-l);transform:translateY(-2px);}
+.btn-o{display:inline-flex;align-items:center;gap:0.5rem;border:2px solid var(--blue);color:var(--blue);padding:0.79rem 1.4rem;border-radius:2px;text-decoration:none;font-size:0.78rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;transition:background 0.2s,color 0.2s;}
+.btn-o:hover{background:var(--blue);color:var(--white);}
+.btn-g{color:var(--blue);font-size:0.8rem;font-weight:600;text-decoration:none;border-bottom:2px solid transparent;padding-bottom:2px;transition:border-color 0.2s;}
+.btn-g:hover{border-color:var(--accent);}
+.hero-card{background:var(--white);border:1px solid rgba(0,0,0,0.08);border-radius:4px;padding:2.2rem;width:295px;box-shadow:0 20px 50px rgba(26,58,107,0.1);position:relative;}
+.hero-card::before{content:'';position:absolute;top:-10px;left:20px;width:38px;height:4px;background:var(--accent);}
+.hc-name{font-family:'DM Serif Display',serif;font-size:1.45rem;color:var(--blue);margin-bottom:0.2rem;}
+.hc-role{font-size:0.67rem;color:var(--accent);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1.1rem;}
+.hc-info{display:flex;flex-direction:column;gap:0.5rem;}
+.hc-item{display:flex;align-items:center;gap:0.55rem;font-size:0.78rem;color:var(--gray);}
+.badge-row{display:flex;flex-wrap:wrap;gap:0.32rem;margin-top:1.1rem;padding-top:1.1rem;border-top:1px solid var(--creamD);}
+.badge{background:var(--cream);border:1px solid var(--creamD);color:var(--blue);font-size:0.6rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;padding:0.2rem 0.5rem;border-radius:2px;}
+section{padding:5rem 3rem;}
+.sl{display:inline-flex;align-items:center;gap:0.6rem;font-size:0.67rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);margin-bottom:0.7rem;}
+.sl::after{content:'';width:26px;height:1px;background:var(--accent);}
+.st{font-family:'DM Serif Display',serif;font-size:clamp(1.8rem,3vw,2.8rem);color:var(--blue);line-height:1.15;margin-bottom:2.8rem;}
+#apropos{background:var(--ink);}
+#apropos .sl{color:var(--accent);}
+#apropos .sl::after{background:var(--accent);}
+#apropos .st{color:var(--white);margin-bottom:1.4rem;}
+.about-text{max-width:640px;font-size:0.95rem;line-height:1.85;color:rgba(255,255,255,0.7);}
+.about-text strong{color:var(--accent);font-weight:600;}
+#competences{background:var(--white);}
+.sg{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;}
+.sc{background:var(--cream);border:1px solid var(--creamD);border-radius:3px;padding:1.65rem;position:relative;overflow:hidden;transition:transform 0.25s,box-shadow 0.25s;}
+.sc:hover{transform:translateY(-4px);box-shadow:0 14px 36px rgba(26,58,107,0.1);}
+.sc::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform 0.3s;}
+.sc:hover::after{transform:scaleX(1);}
+.si{font-size:1.55rem;margin-bottom:0.7rem;}
+.sn{font-weight:700;font-size:0.92rem;color:var(--blue);margin-bottom:0.3rem;}
+.sd{font-size:0.78rem;color:var(--gray);line-height:1.55;}
+#aec{background:var(--cream);}
+.aec-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
+.aec-card{background:var(--white);border-radius:4px;padding:1.75rem;border-left:4px solid var(--accent);}
+.aec-card.blue{border-left-color:var(--blue);}
+.aec-title{font-family:'DM Serif Display',serif;font-size:1.1rem;color:var(--blue);margin-bottom:1rem;}
+.aec-list{list-style:none;}
+.aec-list li{font-size:0.82rem;line-height:1.7;color:var(--ink);opacity:0.75;padding:0.2rem 0 0.2rem 1rem;position:relative;}
+.aec-list li::before{content:'–';position:absolute;left:0;color:var(--accent);font-weight:700;}
+#projets{background:var(--white);}
+.tabs{display:flex;flex-wrap:wrap;margin-bottom:2.5rem;border-bottom:2px solid var(--creamD);}
+.tab-btn{background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:0.76rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--gray);padding:0.8rem 1.3rem;border-bottom:3px solid transparent;margin-bottom:-2px;transition:color 0.2s,border-color 0.2s;white-space:nowrap;}
+.tab-btn:hover{color:var(--blue);}
+.tab-btn.active{color:var(--blue);border-bottom-color:var(--accent);}
+.tab-panel{display:none;}
+.tab-panel.active{display:block;animation:fadeTab 0.3s ease;}
+@keyframes fadeTab{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.p2{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;}
+.p1{display:grid;grid-template-columns:1fr;max-width:580px;gap:1.5rem;}
+.pc{background:var(--cream);border:1px solid rgba(0,0,0,0.06);border-radius:4px;overflow:hidden;transition:transform 0.25s,box-shadow 0.25s;}
+.pc:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(26,58,107,0.1);}
+.pi{width:100%;height:150px;display:flex;align-items:center;justify-content:center;font-size:2.5rem;}
+.pi1{background:linear-gradient(135deg,#1a3a6b,#2e5090);}
+.pi2{background:linear-gradient(135deg,#2d6a4f,#52b788);}
+.pi3{background:linear-gradient(135deg,#4a1942,#9b5de5);}
+.pi4{background:linear-gradient(135deg,#7b3f00,#c9973a);}
+.pi5{background:linear-gradient(135deg,#023e8a,#48cae4);}
+.pb{padding:1.4rem;}
+.pt{font-size:0.62rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:0.35rem;}
+.pn{font-family:'DM Serif Display',serif;font-size:1.2rem;color:var(--blue);margin-bottom:0.5rem;}
+.pd{font-size:0.8rem;line-height:1.65;color:var(--gray);margin-bottom:0.85rem;}
+.pf{list-style:none;margin-bottom:0.9rem;}
+.pf li{font-size:0.78rem;line-height:1.6;color:var(--ink);opacity:0.75;padding:0.15rem 0 0.15rem 1rem;position:relative;}
+.pf li::before{content:'–';position:absolute;left:0;color:var(--accent);font-weight:700;}
+.ptags{display:flex;flex-wrap:wrap;gap:0.3rem;margin-bottom:0.9rem;}
+.ptag{background:var(--white);border:1px solid var(--creamD);color:var(--blue-l);font-size:0.65rem;font-weight:600;padding:0.18rem 0.5rem;border-radius:2px;}
+.plink{display:inline-flex;align-items:center;gap:0.38rem;font-size:0.76rem;font-weight:700;color:var(--blue);text-decoration:none;border-bottom:1px solid var(--accent);padding-bottom:1px;transition:color 0.2s;}
+.plink:hover{color:var(--accent);}
+#experience{background:var(--cream);}
+.tl{position:relative;padding-left:1.7rem;}
+.tl::before{content:'';position:absolute;left:0;top:6px;bottom:0;width:1px;background:var(--creamD);}
+.tli{position:relative;margin-bottom:2.5rem;padding-bottom:2.5rem;border-bottom:1px solid var(--creamD);}
+.tli:last-child{border-bottom:none;margin-bottom:0;}
+.tld{position:absolute;left:-2.18rem;top:6px;width:11px;height:11px;background:var(--accent);border-radius:50%;border:3px solid var(--white);box-shadow:0 0 0 1px var(--accent);}
+.tlp{font-size:0.67rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:0.4rem;}
+.tlr{font-family:'DM Serif Display',serif;font-size:1.2rem;color:var(--blue);margin-bottom:0.15rem;}
+.tlc{font-size:0.82rem;color:var(--gray);margin-bottom:0.85rem;}
+.tlb{list-style:none;}
+.tlb li{font-size:0.82rem;line-height:1.65;color:var(--ink);opacity:0.75;padding:0.18rem 0 0.18rem 1.1rem;position:relative;}
+.tlb li::before{content:'–';position:absolute;left:0;color:var(--accent);font-weight:700;}
+#formation{background:var(--white);}
+.eg{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;}
+.ec{background:var(--cream);border:1px solid rgba(0,0,0,0.06);border-radius:4px;padding:1.6rem;border-left:4px solid var(--accent);}
+.ed{font-family:'DM Serif Display',serif;font-size:1.05rem;color:var(--blue);margin-bottom:0.22rem;}
+.es{font-size:0.78rem;font-weight:600;color:var(--accent);margin-bottom:0.18rem;}
+.ey{font-size:0.72rem;color:var(--gray);letter-spacing:0.05em;margin-bottom:0.85rem;}
+.edesc{font-size:0.78rem;line-height:1.6;color:var(--gray);}
+#contact{background:var(--blue);}
+#contact .sl{color:var(--accent);}
+#contact .sl::after{background:var(--accent);}
+#contact .st{color:var(--white);margin-bottom:2.5rem;}
+.cl{display:grid;grid-template-columns:1fr 1.6fr;gap:3.5rem;align-items:start;}
+.ci{display:flex;flex-direction:column;gap:1.3rem;}
+.cil{font-size:0.67rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:0.22rem;}
+.civ{font-size:0.9rem;color:rgba(255,255,255,0.8);}
+.civ a{color:rgba(255,255,255,0.8);text-decoration:none;transition:color 0.2s;}
+.civ a:hover{color:var(--accent);}
+.sr{display:flex;gap:1.2rem;margin-top:1.4rem;flex-wrap:wrap;}
+.soc{display:inline-flex;align-items:center;gap:0.42rem;color:rgba(255,255,255,0.5);text-decoration:none;font-size:0.78rem;font-weight:500;border-bottom:1px solid transparent;padding-bottom:2px;transition:color 0.2s,border-color 0.2s;}
+.soc:hover{color:var(--accent);border-color:var(--accent);}
+.dlb{display:inline-flex;align-items:center;gap:0.5rem;margin-top:1.4rem;background:var(--accent);color:var(--white);text-decoration:none;padding:0.72rem 1.35rem;border-radius:2px;font-size:0.76rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;transition:background 0.2s;}
+.dlb:hover{background:#b5832e;}
+.cf{display:flex;flex-direction:column;gap:1.1rem;}
+.fg{display:flex;flex-direction:column;gap:0.32rem;}
+.fl{font-size:0.66rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.42);}
+.fi{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.13);border-radius:3px;padding:0.68rem 0.88rem;color:var(--white);font-family:'DM Sans',sans-serif;font-size:0.87rem;outline:none;transition:border-color 0.2s;width:100%;}
+.fi::placeholder{color:rgba(255,255,255,0.27);}
+.fi:focus{border-color:var(--accent);}
+.fta{resize:vertical;min-height:108px;}
+.fb{background:var(--accent);color:var(--white);border:none;border-radius:2px;padding:0.82rem 1.65rem;font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;transition:background 0.2s,transform 0.2s;align-self:flex-start;}
+.fb:hover{background:#b5832e;transform:translateY(-2px);}
+.fok{display:none;color:#7effa0;font-size:0.83rem;padding:0.45rem 0;}
+footer{background:var(--ink);color:rgba(255,255,255,0.3);text-align:center;padding:1.4rem;font-size:0.74rem;letter-spacing:0.04em;}
+.fu{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease;}
+.fu.visible{opacity:1;transform:translateY(0);}
+#chatBtn{position:fixed;bottom:1.75rem;right:1.75rem;z-index:500;width:58px;height:58px;border-radius:50%;border:3px solid var(--blue);cursor:pointer;background:transparent;overflow:hidden;padding:0;box-shadow:0 6px 24px rgba(26,58,107,0.35);transition:transform 0.2s;}
+#chatBtn:hover{transform:scale(1.08);}
+#chatNotif{display:none;position:fixed;bottom:5.2rem;right:1.75rem;z-index:499;background:var(--blue);color:#fff;font-size:0.78rem;font-weight:600;padding:0.5rem 0.9rem;border-radius:20px;box-shadow:0 4px 16px rgba(26,58,107,0.25);white-space:nowrap;animation:popIn 0.3s ease;}
+@keyframes popIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.chat-box{position:fixed;bottom:5.5rem;right:1.75rem;z-index:498;width:360px;max-width:calc(100vw - 2rem);background:#fff;border-radius:12px;box-shadow:0 16px 48px rgba(26,58,107,0.2);flex-direction:column;overflow:hidden;border:1px solid rgba(0,0,0,0.08);}
+.cmsg{display:flex;}
+.cmu{justify-content:flex-end;}
+.cma{justify-content:flex-start;}
+.cbub{max-width:82%;padding:0.65rem 0.9rem;border-radius:10px;font-size:0.84rem;line-height:1.55;}
+.cmu .cbub{background:var(--blue);color:#fff;border-bottom-right-radius:3px;}
+.cma .cbub{background:#fff;color:#0f1623;border:1px solid #ede9e0;border-bottom-left-radius:3px;}
+.ctyp{display:flex;gap:4px;align-items:center;padding:0.7rem 1rem!important;}
+.ctyp span{width:7px;height:7px;background:#8a8a8a;border-radius:50%;animation:bounce 1.2s infinite;}
+.ctyp span:nth-child(2){animation-delay:0.2s;}
+.ctyp span:nth-child(3){animation-delay:0.4s;}
+@keyframes bounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-6px)}}
+.csb{background:#fff;border:1px solid #ede9e0;color:var(--blue);font-family:'DM Sans',sans-serif;font-size:0.72rem;font-weight:600;padding:0.3rem 0.65rem;border-radius:20px;cursor:pointer;transition:background 0.2s,color 0.2s;white-space:nowrap;}
+.csb:hover{background:var(--blue);color:#fff;}
+@media(max-width:1024px){nav{padding:1rem 2rem;}.hero{padding:7rem 2rem 3rem;gap:2rem;}section{padding:4rem 2rem;}.sg,.eg{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:768px){nav{padding:1rem 1.2rem;}.nav-links{display:none;}.hamburger{display:flex;}.hero{grid-template-columns:1fr;padding:6rem 1.2rem 3rem;}.hero-card{display:none;}.hero-desc{max-width:100%;}.hero-btns{flex-direction:column;align-items:stretch;}.btn-p,.btn-o{justify-content:center;}section{padding:3.5rem 1.2rem;}.st{font-size:1.9rem;margin-bottom:2rem;}.sg{grid-template-columns:repeat(2,1fr);gap:0.85rem;}.aec-grid{grid-template-columns:1fr;}.tabs{overflow-x:auto;flex-wrap:nowrap;}.tab-btn{font-size:0.7rem;padding:0.7rem 0.9rem;flex-shrink:0;}.p2{grid-template-columns:1fr;}.p1{max-width:100%;}.eg{grid-template-columns:1fr;}.cl{grid-template-columns:1fr;gap:2rem;}.chat-box{right:0.75rem;width:calc(100vw - 1.5rem);bottom:5rem;}#chatBtn,#chatNotif{right:1rem;bottom:1rem;}}
+@media(max-width:420px){.hero h1{font-size:2.4rem;}.sg{grid-template-columns:1fr;}.tab-btn{font-size:0.65rem;padding:0.55rem 0.8rem;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">Amar Dia</a>
+  <ul class="nav-links">
+    <li><a href="#apropos" data-fr="À propos" data-en="About">À propos</a></li>
+    <li><a href="#competences" data-fr="Compétences" data-en="Skills">Compétences</a></li>
+    <li><a href="#aec" data-fr="AEC" data-en="AEC">AEC</a></li>
+    <li><a href="#projets" data-fr="Projets" data-en="Projects">Projets</a></li>
+    <li><a href="#experience" data-fr="Expérience" data-en="Experience">Expérience</a></li>
+    <li><a href="#formation" data-fr="Formation" data-en="Education">Formation</a></li>
+    <li><a href="#contact" data-fr="Contact" data-en="Contact">Contact</a></li>
+    <li><a href="CV_Amar_Dia_Analyste_Programmeur.pdf" download class="nav-cv" data-fr="⬇ CV" data-en="⬇ Resume">⬇ CV</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="lang-toggle">
+      <button class="lang-btn active" data-lang="fr">FR</button>
+      <button class="lang-btn" data-lang="en">EN</button>
+    </div>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#apropos" class="mob-link" data-fr="À propos" data-en="About">À propos</a>
+  <a href="#competences" class="mob-link" data-fr="Compétences" data-en="Skills">Compétences</a>
+  <a href="#aec" class="mob-link" data-fr="AEC" data-en="AEC">AEC</a>
+  <a href="#projets" class="mob-link" data-fr="Projets" data-en="Projects">Projets</a>
+  <a href="#experience" class="mob-link" data-fr="Expérience" data-en="Experience">Expérience</a>
+  <a href="#formation" class="mob-link" data-fr="Formation" data-en="Education">Formation</a>
+  <a href="#contact" class="mob-link" data-fr="Contact" data-en="Contact">Contact</a>
+  <a href="CV_Amar_Dia_Analyste_Programmeur.pdf" download class="m-cv" data-fr="⬇ Télécharger CV" data-en="⬇ Download Resume">⬇ Télécharger CV</a>
+  <div class="mob-lang">
+    <button class="mob-lang-btn active" data-lang="fr">FR</button>
+    <button class="mob-lang-btn" data-lang="en">EN</button>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="fu" style="z-index:1;position:relative;">
+    <div class="hero-eyebrow" data-fr="Programmeur-Analyste" data-en="Programmer-Analyst">Programmeur-Analyste</div>
+    <h1>Amar<br><em>Dia</em></h1>
+    <p class="hero-sub" data-fr="Web · Mobile · IA · Montréal, QC" data-en="Web · Mobile · AI · Montreal, QC">Web · Mobile · IA · Montréal, QC</p>
+    <p class="hero-desc" data-fr="Diplômé AEC Programmeur-Analyste au CDI Collège. Full Stack : React, Node.js, Express, PHP, Python, MongoDB, MySQL, SQLite, Kotlin. Développement web, mobile Android et chatbots IA." data-en="AEC Programmer-Analyst graduate from CDI College. Full Stack: React, Node.js, Express, PHP, Python, MongoDB, MySQL, SQLite, Kotlin. Web, Android and AI chatbot development.">Diplômé AEC Programmeur-Analyste au CDI Collège. Full Stack : React, Node.js, Express, PHP, Python, MongoDB, MySQL, SQLite, Kotlin. Développement web, mobile Android et chatbots IA.</p>
+    <div class="hero-btns">
+      <a href="#projets" class="btn-p" data-fr="Voir mes projets →" data-en="View my projects →">Voir mes projets →</a>
+      <a href="CV_Amar_Dia_Analyste_Programmeur.pdf" download class="btn-o" data-fr="⬇ Télécharger CV" data-en="⬇ Download Resume">⬇ Télécharger CV</a>
+      <a href="#contact" class="btn-g" data-fr="Me contacter" data-en="Contact me">Me contacter</a>
+    </div>
+  </div>
+  <div class="fu" style="display:flex;justify-content:center;transition-delay:0.2s">
+    <div class="hero-card">
+      <div class="hc-name">Amar Dia</div>
+      <div class="hc-role" data-fr="Programmeur-Analyste" data-en="Programmer-Analyst">Programmeur-Analyste</div>
+      <div class="hc-info">
+        <div class="hc-item"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Saint-Laurent, Montréal, QC</div>
+        <div class="hc-item"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013 5.18 2 2 0 015 3h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L9.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 17z"/></svg>514 770-7757</div>
+        <div class="hc-item"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Diaamar757@gmail.com</div>
+        <div class="hc-item"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>amardia.ca</div>
+      </div>
+      <div class="badge-row">
+        <span class="badge">React</span><span class="badge">Node.js</span><span class="badge">Express</span>
+        <span class="badge">Python</span><span class="badge">MongoDB</span><span class="badge">MySQL</span>
+        <span class="badge">Kotlin</span><span class="badge">IA/AI</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="apropos">
+  <div class="fu">
+    <div class="sl" data-fr="À propos" data-en="About me">À propos</div>
+    <h2 class="st" data-fr="Qui suis-je ?" data-en="Who am I?">Qui suis-je ?</h2>
+    <p class="about-text" id="aboutTxt">Basé à <strong>Montréal</strong>, je suis un <strong>Programmeur-Analyste Full Stack</strong> diplômé d'un <strong>AEC au CDI Collège</strong>. Je maîtrise le développement web (React, Node.js, Express, PHP, Python), les bases de données relationnelles et NoSQL (MySQL, SQLite, MongoDB), le mobile Android (Kotlin) et la création de chatbots IA.<br><br>Formé à analyser les besoins, modéliser, développer et documenter des applications complètes. Mon parcours chez <strong>Groupe ALDO</strong> (SAP), <strong>Tecnic</strong> et la co-fondation de l'<strong>ACAFIS</strong> m'ont forgé rigueur, organisation et sens des responsabilités.</p>
+  </div>
+</section>
+
+<section id="competences">
+  <div class="fu"><div class="sl" data-fr="Expertise" data-en="Expertise">Expertise</div><h2 class="st" data-fr="Compétences techniques" data-en="Technical Skills">Compétences techniques</h2></div>
+  <div class="sg fu" style="transition-delay:0.15s">
+    <div class="sc"><div class="si">⚛️</div><div class="sn">React / JavaScript</div><div class="sd" data-fr="Interfaces modernes avec React, composants réutilisables et logique applicative côté client." data-en="Modern interfaces with React, reusable components and client-side application logic.">Interfaces modernes avec React, composants réutilisables et logique applicative côté client.</div></div>
+    <div class="sc"><div class="si">🟢</div><div class="sn">Node.js / Express / PHP / Python</div><div class="sd" data-fr="Back-end full stack : APIs REST avec Express, scripts Python et logique serveur PHP." data-en="Full stack back-end: Express REST APIs, Python scripts and PHP server logic.">Back-end full stack : APIs REST avec Express, scripts Python et logique serveur PHP.</div></div>
+    <div class="sc"><div class="si">🗄️</div><div class="sn">MongoDB / MySQL / SQLite</div><div class="sd" data-fr="Bases de données relationnelles (MySQL, SQLite) et NoSQL (MongoDB) — conception, requêtes, intégrité." data-en="Relational (MySQL, SQLite) and NoSQL (MongoDB) databases — design, queries, integrity.">Bases de données relationnelles (MySQL, SQLite) et NoSQL (MongoDB) — conception, requêtes, intégrité.</div></div>
+    <div class="sc"><div class="si">📱</div><div class="sn">Kotlin / Android</div><div class="sd" data-fr="Applications mobiles Android natives avec Kotlin, Android Studio et Material Design." data-en="Native Android mobile apps with Kotlin, Android Studio and Material Design.">Applications mobiles Android natives avec Kotlin, Android Studio et Material Design.</div></div>
+    <div class="sc"><div class="si">🌐</div><div class="sn">WordPress / HTML / CSS</div><div class="sd" data-fr="Sites WordPress, interfaces HTML5/CSS3 responsives et intégrations dynamiques." data-en="WordPress sites, responsive HTML5/CSS3 interfaces and dynamic integrations.">Sites WordPress, interfaces HTML5/CSS3 responsives et intégrations dynamiques.</div></div>
+    <div class="sc"><div class="si">🤖</div><div class="sn" data-fr="Chatbots IA" data-en="AI Chatbots">Chatbots IA</div><div class="sd" data-fr="Conception de chatbots intelligents avec Node.js, Express et OpenAI API." data-en="Intelligent chatbot design with Node.js, Express and OpenAI API.">Conception de chatbots intelligents avec Node.js, Express et OpenAI API.</div></div>
+  </div>
+</section>
+
+<section id="aec">
+  <div class="fu"><div class="sl" data-fr="CDI Collège 2024–2026" data-en="CDI College 2024–2026">CDI Collège 2024–2026</div><h2 class="st" data-fr="Compétences AEC acquises" data-en="AEC Acquired Competencies">Compétences AEC acquises</h2></div>
+  <div class="aec-grid fu" style="transition-delay:0.15s">
+    <div class="aec-card">
+      <div class="aec-title" data-fr="🗄️ Bases de données" data-en="🗄️ Databases">🗄️ Bases de données</div>
+      <ul class="aec-list">
+        <li data-fr="Analyser les caractéristiques d'une base de données" data-en="Analyze database characteristics">Analyser les caractéristiques d'une base de données</li>
+        <li data-fr="Analyser les caractéristiques d'un logiciel de base de données" data-en="Analyze database software characteristics">Analyser les caractéristiques d'un logiciel de base de données</li>
+        <li data-fr="Créer et exploiter une base de données (MySQL, SQLite, MongoDB)" data-en="Create and operate a database (MySQL, SQLite, MongoDB)">Créer et exploiter une base de données (MySQL, SQLite, MongoDB)</li>
+        <li data-fr="Analyser les caractéristiques d'un SGBD" data-en="Analyze DBMS characteristics">Analyser les caractéristiques d'un SGBD</li>
+        <li data-fr="Mettre à jour une base de données dans un SGBD" data-en="Update a database in a DBMS">Mettre à jour une base de données dans un SGBD</li>
+        <li data-fr="Assurer l'intégrité des données" data-en="Ensure data integrity">Assurer l'intégrité des données</li>
+      </ul>
+    </div>
+    <div class="aec-card blue">
+      <div class="aec-title" data-fr="💻 Développement d'applications" data-en="💻 Application Development">💻 Développement d'applications</div>
+      <ul class="aec-list">
+        <li data-fr="Établir les fonctionnalités de l'application" data-en="Define application functionalities">Établir les fonctionnalités de l'application</li>
+        <li data-fr="Établir les besoins technologiques" data-en="Establish technological requirements">Établir les besoins technologiques</li>
+        <li data-fr="Préparer le travail de développement" data-en="Prepare development work">Préparer le travail de développement</li>
+        <li data-fr="Modéliser l'application" data-en="Model the application">Modéliser l'application</li>
+        <li data-fr="Produire l'interface utilisateur par prototypage" data-en="Produce UI through prototyping">Produire l'interface utilisateur par prototypage</li>
+        <li data-fr="Développer les programmes" data-en="Develop the programs">Développer les programmes</li>
+        <li data-fr="Produire la documentation de l'application" data-en="Produce application documentation">Produire la documentation de l'application</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="projets">
+  <div class="fu"><div class="sl" data-fr="Réalisations" data-en="Portfolio">Réalisations</div><h2 class="st" data-fr="Mes projets" data-en="My Projects">Mes projets</h2></div>
+  <div class="tabs fu" style="transition-delay:0.1s">
+    <button class="tab-btn active" data-tab="web" data-fr="🌐 Sites Web" data-en="🌐 Websites">🌐 Sites Web</button>
+    <button class="tab-btn" data-tab="mobile" data-fr="📱 Android" data-en="📱 Android">📱 Android</button>
+    <button class="tab-btn" data-tab="chatbot" data-fr="🤖 Chatbots IA" data-en="🤖 AI Chatbots">🤖 Chatbots IA</button>
+    <button class="tab-btn" data-tab="communautaire" data-fr="🌍 Communautaire" data-en="🌍 Community">🌍 Communautaire</button>
+  </div>
+  <div class="tab-panel active" id="tab-web">
+    <div class="p2">
+      <div class="pc"><div class="pi pi1">🎓</div><div class="pb">
+        <div class="pt" data-fr="Site Web – Éducation" data-en="Website – Education">Site Web – Éducation</div>
+        <div class="pn">emaaschool.com</div>
+        <p class="pd" data-fr="Site web scolaire complet avec React et architecture full-stack." data-en="Complete school website with React and full-stack architecture.">Site web scolaire complet avec React et architecture full-stack.</p>
+        <ul class="pf">
+          <li data-fr="Interface dynamique React" data-en="Dynamic React interface">Interface dynamique React</li>
+          <li data-fr="Back-end PHP + MySQL" data-en="PHP + MySQL back-end">Back-end PHP + MySQL</li>
+          <li data-fr="Design responsive toutes tailles" data-en="Responsive design all sizes">Design responsive toutes tailles</li>
+        </ul>
+        <div class="ptags"><span class="ptag">React</span><span class="ptag">JavaScript</span><span class="ptag">PHP</span><span class="ptag">MySQL</span></div>
+        <a href="https://emaaschool.com" target="_blank" class="plink" data-fr="Visiter ↗" data-en="Visit ↗">Visiter ↗</a>
+      </div></div>
+      <div class="pc"><div class="pi pi2">🌿</div><div class="pb">
+        <div class="pt" data-fr="Site Web – Communautaire" data-en="Website – Community">Site Web – Communautaire</div>
+        <div class="pn">coop-acafis.com</div>
+        <p class="pd" data-fr="Plateforme ACAFIS construite avec WordPress." data-en="ACAFIS platform built with WordPress.">Plateforme ACAFIS construite avec WordPress.</p>
+        <ul class="pf">
+          <li data-fr="Développé avec WordPress" data-en="Built with WordPress">Développé avec WordPress</li>
+          <li data-fr="Gestion de contenu dynamique" data-en="Dynamic content management">Gestion de contenu dynamique</li>
+          <li data-fr="Ressources communautaires" data-en="Community resources">Ressources communautaires</li>
+        </ul>
+        <div class="ptags"><span class="ptag">WordPress</span><span class="ptag">PHP</span><span class="ptag">MySQL</span></div>
+        <a href="https://coop-acafis.com" target="_blank" class="plink" data-fr="Visiter ↗" data-en="Visit ↗">Visiter ↗</a>
+      </div></div>
+    </div>
+  </div>
+  <div class="tab-panel" id="tab-mobile">
+    <div class="p1">
+      <div class="pc"><div class="pi pi3">📱</div><div class="pb">
+        <div class="pt" data-fr="Application Mobile Android" data-en="Android Mobile App">Application Mobile Android</div>
+        <div class="pn" data-fr="Applications Android" data-en="Android Applications">Applications Android</div>
+        <p class="pd" data-fr="Applications natives Android avec Kotlin et Android Studio." data-en="Native Android apps with Kotlin and Android Studio.">Applications natives Android avec Kotlin et Android Studio.</p>
+        <ul class="pf">
+          <li data-fr="Développement natif Kotlin" data-en="Native Kotlin development">Développement natif Kotlin</li>
+          <li data-fr="Interfaces Material Design" data-en="Material Design interfaces">Interfaces Material Design</li>
+          <li data-fr="Tests sur appareils physiques" data-en="Testing on physical devices">Tests sur appareils physiques</li>
+        </ul>
+        <div class="ptags"><span class="ptag">Kotlin</span><span class="ptag">Android Studio</span><span class="ptag">Material Design</span></div>
+      </div></div>
+    </div>
+  </div>
+  <div class="tab-panel" id="tab-chatbot">
+    <div class="p1">
+      <div class="pc"><div class="pi pi5">🤖</div><div class="pb">
+        <div class="pt" data-fr="Intelligence Artificielle" data-en="Artificial Intelligence">Intelligence Artificielle</div>
+        <div class="pn" data-fr="Chatbots IA" data-en="AI Chatbots">Chatbots IA</div>
+        <p class="pd" data-fr="Chatbots intelligents intégrés dans des projets web." data-en="Intelligent chatbots integrated into web projects.">Chatbots intelligents intégrés dans des projets web.</p>
+        <ul class="pf">
+          <li data-fr="Alimentés par OpenAI API" data-en="Powered by OpenAI API">Alimentés par OpenAI API</li>
+          <li data-fr="Backend Node.js + Express" data-en="Node.js + Express backend">Backend Node.js + Express</li>
+          <li data-fr="Intégration dans interfaces web" data-en="Web interface integration">Intégration dans interfaces web</li>
+        </ul>
+        <div class="ptags"><span class="ptag">Node.js</span><span class="ptag">Express</span><span class="ptag">OpenAI</span><span class="ptag">JavaScript</span></div>
+      </div></div>
+    </div>
+  </div>
+  <div class="tab-panel" id="tab-communautaire">
+    <div class="p1">
+      <div class="pc"><div class="pi pi4">🌍</div><div class="pb">
+        <div class="pt" data-fr="Implication Communautaire" data-en="Community Involvement">Implication Communautaire</div>
+        <div class="pn" data-fr="ACAFIS – Membre Fondateur" data-en="ACAFIS – Co-Founder">ACAFIS – Membre Fondateur</div>
+        <p class="pd" data-fr="Co-fondateur de l'Association Canadienne d'Aide à la Famille Immigrante Sénégalaise." data-en="Co-founder of the Canadian Association for Aid to Senegalese Immigrant Families.">Co-fondateur de l'Association Canadienne d'Aide à la Famille Immigrante Sénégalaise.</p>
+        <ul class="pf">
+          <li data-fr="Co-fondateur d'un OBNL à Montréal" data-en="Co-founder of a non-profit in Montreal">Co-fondateur d'un OBNL à Montréal</li>
+          <li data-fr="Développement de coop-acafis.com" data-en="Development of coop-acafis.com">Développement de coop-acafis.com</li>
+          <li data-fr="Méthodologie MARPPP appliquée" data-en="MARPPP methodology applied">Méthodologie MARPPP appliquée</li>
+        </ul>
+        <div class="ptags"><span class="ptag">Leadership</span><span class="ptag">MARPPP</span><span class="ptag">WordPress</span></div>
+        <a href="https://coop-acafis.com" target="_blank" class="plink" data-fr="Voir le site ↗" data-en="View site ↗">Voir le site ↗</a>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="fu"><div class="sl" data-fr="Parcours" data-en="Career">Parcours</div><h2 class="st" data-fr="Expérience professionnelle" data-en="Work Experience">Expérience professionnelle</h2></div>
+  <div class="tl fu" style="transition-delay:0.15s">
+    <div class="tli">
+      <div class="tld"></div>
+      <div class="tlp" data-fr="Mai 2024 – Présent" data-en="May 2024 – Present">Mai 2024 – Présent</div>
+      <div class="tlr" data-fr="Instructeur de conduite" data-en="Driving Instructor">Instructeur de conduite</div>
+      <div class="tlc">Tecnic Driving School · Montréal, QC</div>
+      <ul class="tlb"><li data-fr="Enseignement des règles du code de la route et des techniques de conduite" data-en="Teaching road safety rules and driving techniques">Enseignement des règles du code de la route et des techniques de conduite</li></ul>
+    </div>
+    <div class="tli">
+      <div class="tld"></div>
+      <div class="tlp" data-fr="Juin 2018 – Décembre 2024" data-en="June 2018 – December 2024">Juin 2018 – Décembre 2024</div>
+      <div class="tlr" data-fr="Coordonnateur – Réception &amp; Expédition" data-en="Coordinator – Receiving &amp; Shipping">Coordonnateur – Réception &amp; Expédition</div>
+      <div class="tlc">Groupe ALDO · Montréal, QC</div>
+      <ul class="tlb">
+        <li data-fr="Utilisation du système SAP pour gestion des stocks, commandes et expéditions" data-en="Using SAP system for inventory, order and shipping management">Utilisation du système SAP pour gestion des stocks, commandes et expéditions</li>
+        <li data-fr="Développement de processus d'optimisation via les outils informatiques" data-en="Developing optimization processes via IT tools">Développement de processus d'optimisation via les outils informatiques</li>
+        <li data-fr="Coordination des opérations et formation des employés aux systèmes informatiques" data-en="Operations coordination and employee IT systems training">Coordination des opérations et formation des employés aux systèmes informatiques</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="formation">
+  <div class="fu"><div class="sl" data-fr="Éducation & Certifications" data-en="Education & Certifications">Éducation &amp; Certifications</div><h2 class="st" data-fr="Formation" data-en="Education">Formation</h2></div>
+  <div class="eg fu" style="transition-delay:0.15s">
+    <div class="ec">
+      <div class="ed" data-fr="AEC – Programmeur-Analyste" data-en="AEC – Programmer-Analyst">AEC – Programmeur-Analyste</div>
+      <div class="es">CDI Collège · Montréal, QC</div>
+      <div class="ey">2024 – 2026</div>
+      <div class="edesc" data-fr="React, Node.js, Express, PHP, Python, MongoDB, MySQL, SQLite, Kotlin — analyse, modélisation, prototypage, documentation." data-en="React, Node.js, Express, PHP, Python, MongoDB, MySQL, SQLite, Kotlin — analysis, modeling, prototyping, documentation.">React, Node.js, Express, PHP, Python, MongoDB, MySQL, SQLite, Kotlin — analyse, modélisation, prototypage, documentation.</div>
+    </div>
+    <div class="ec">
+      <div class="ed">MARPPP</div>
+      <div class="es" data-fr="Méthode Active de Recherche Participative" data-en="Active Participatory Research Method">Méthode Active de Recherche Participative</div>
+      <div class="ey" data-fr="Formation continue" data-en="Continuing education">Formation continue</div>
+      <div class="edesc" data-fr="Gestion de projet participative, mobilisation communautaire et planification stratégique." data-en="Participatory project management, community mobilization and strategic planning.">Gestion de projet participative, mobilisation communautaire et planification stratégique.</div>
+    </div>
+    <div class="ec">
+      <div class="ed">Lean Six Sigma – White Belt</div>
+      <div class="es" data-fr="Amélioration continue" data-en="Continuous Improvement">Amélioration continue</div>
+      <div class="ey">2023</div>
+      <div class="edesc" data-fr="Maximiser la productivité et réduire le gaspillage dans les processus opérationnels." data-en="Maximize productivity and reduce waste in operational processes.">Maximiser la productivité et réduire le gaspillage dans les processus opérationnels.</div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="fu"><div class="sl" data-fr="Contact" data-en="Contact">Contact</div><h2 class="st" data-fr="Travaillons ensemble" data-en="Let's work together">Travaillons ensemble</h2></div>
+  <div class="cl fu" style="transition-delay:0.15s">
+    <div class="ci">
+      <div><div class="cil" data-fr="Téléphone" data-en="Phone">Téléphone</div><div class="civ"><a href="tel:5147707757">514 770-7757</a></div></div>
+      <div><div class="cil" data-fr="Courriel" data-en="Email">Courriel</div><div class="civ"><a href="mailto:Diaamar757@gmail.com">Diaamar757@gmail.com</a></div></div>
+      <div><div class="cil" data-fr="Site web" data-en="Website">Site web</div><div class="civ"><a href="https://amardia.ca" target="_blank">amardia.ca</a></div></div>
+      <div><div class="cil" data-fr="Localisation" data-en="Location">Localisation</div><div class="civ" data-fr="Saint-Laurent, Montréal, QC" data-en="Saint-Laurent, Montreal, QC">Saint-Laurent, Montréal, QC</div></div>
+      <div class="sr">
+        <a href="https://linkedin.com/in/amar-dia" target="_blank" class="soc"><svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a>
+        <a href="https://github.com/diaamar757" target="_blank" class="soc"><svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>GitHub</a>
+      </div>
+      <a href="CV_Amar_Dia_Analyste_Programmeur.pdf" download class="dlb">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span data-fr="Télécharger mon CV" data-en="Download my Resume">Télécharger mon CV</span>
+      </a>
+    </div>
+    <form class="cf" action="https://formspree.io/f/mzdoqvlw" method="POST">
+      <div class="fg"><label class="fl" data-fr="Nom complet" data-en="Full name">Nom complet</label><input class="fi" type="text" name="name" placeholder="Votre nom" required></div>
+      <div class="fg"><label class="fl" data-fr="Courriel" data-en="Email">Courriel</label><input class="fi" type="email" name="email" placeholder="votre@email.com" required></div>
+      <div class="fg"><label class="fl" data-fr="Sujet" data-en="Subject">Sujet</label><input class="fi" type="text" name="subject" placeholder="Objet du message"></div>
+      <div class="fg"><label class="fl" data-fr="Message" data-en="Message">Message</label><textarea class="fi fta" name="message" placeholder="Votre message..." required></textarea></div>
+      <button class="fb" type="submit" data-fr="Envoyer →" data-en="Send →">Envoyer →</button>
+      <div class="fok" id="formOk" data-fr="✅ Message envoyé ! Je vous répondrai sous peu." data-en="✅ Message sent! I will reply shortly.">✅ Message envoyé !</div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <span data-fr="© 2026 Amar Dia · Programmeur-Analyste · amardia.ca" data-en="© 2026 Amar Dia · Programmer-Analyst · amardia.ca">© 2026 Amar Dia · Programmeur-Analyste · amardia.ca</span>
+</footer>
+
+<!-- CHATBOT BUTTON -->
+<button id="chatBtn" aria-label="Assistant IA">
+  <img src="data:image/jpeg;base64,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" style="width:58px;height:58px;object-fit:cover;border-radius:50%;display:block;" alt="Amar Dia">
+</button>
+<div id="chatNotif" data-fr="💬 Parlez à mon assistant IA !" data-en="💬 Talk to my AI assistant!">💬 Parlez à mon assistant IA !</div>
+
+<!-- CHATBOT WINDOW -->
+<div id="chatBox" class="chat-box" style="display:none;">
+  <div style="background:var(--blue);padding:1rem 1.2rem;display:flex;align-items:center;gap:0.75rem;">
+    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAB4AHgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDvdlGyrGynbK9I4isEpfLqwEpdntQBXCUuyrASl2UAV/LpQlT7KXZQIhEdOCCpglOCCgCIJTglZ+teIdM0CENfThZGUmOIcs+P5emTXDTfFqTefI0pAn8O+Ukn64qJVIx3KjCUtkelbeM/ypqK5cJszuOBiuK0X4m6bf3Kw6jA+nlj/rgd8effuPrzXoKaf5kazx3MckTruSRJPlYeoxU+1j3K9nJborXGmXltbPKIyoXB5I6evtRWqPOt41ia5UR4yWHzMPbrz9aKy9q+pfIjLCjdkjjvircEtlGButmkYd2PX8KjClGxx+dBQZxkfhWrakZrQhcKXYqMAngelJtqYoVOCMEUmMVVySPZRtNWfJbyfM2uc8jCHH51GMEUKSYNNEe2l21JtoxTuIYFqhrWqQaJpE+oT8rEvyrnl2PRfxNasSxl/wB6xVO+OteZfGTU4Yjp+mWrNt2m4kBPc/Kv8m/Os51eXQuEOY841fVLnVNSlvbyTfNIcn0A7AegFUPMBXk8VSmuAp55PaolFxJyBgfnXK/M7V2RphwAcciu08EeNJNEuUsrxjJpsjcg8mEn+Ie3qK85IuI+c5p8F184DEq1EXZ3QSV1Zn1TkOqmNlIcbgw5GOxFFcR8LPEDajpUmlzsWltBuiJ7x9x+B/Q0V1RkpK5xSi4ux6E1u6KGYYB7mkMabM+YC393BqZoVEnC4UnoKsfZ7baBtbd6+YM1z+1sbezuUoraWYkRoW9+gqSO5mtQYgiAg8nHOaNrA/IZOOnUUhQ5O7OevNU5c2j2Ity7bliLUrgsAYw59BxTZke7fcLdYmA67sZ9qg2U7awAO7txz0qOVRd4lc11ZkXlsMhgVI6g0hUAdf0qwsbMCxjZwOpFTbIXj2xBRIOeVOf1q3WsSqd9ihjNeJ/GNHi8SQSEHY9qu0/QkGvexCZGJM67wOQe9cX8SfCVvq+gLeTkK9g4cOp+9GSAyn9CKmVVSRUIOLPnO2tJJW8woTnoK1YUVARIm0j171fu5IbWU4QY6BccCpt8M0as+3p6e9YOXc7IrsZMu0thY8j1xWdcWpfJCYNdBLPAi7dm0k9QaiSNJW64P1yDQpdimu5J4E1yTQfE9pPJnar7XB6Mh4P6GiorqwxC1xGp3QjfwOwop3b2MnFH04ssOciWP8xShoT0kj/76FcZJd3NyCfMI2noOn680q3lwhUYbbnGAcg/jzU+0iRys7UFSeJB+D08Ek53gn3INcP/AGhNHHl1YkY34A4J/wAiphqbmLcSdo6cDH596HOIuVnZBDggEYPal2MORkVw0Wo332ss7f6N0ChfmzjpnHrVo6rLv43DjHX+lPnj3DlZ2A8wYwWHuBTWRnOWGT9MVyqauyyKHeTacZx1A/DrU/8Aa5WMMzypkdCc4PP6e9CcejB37HQupJ+VV69xnNcv8RrxrTwc0S4D3Eyx5HoMsf5CpE1y687/AFb+RnmbzBwPXFc18QtSFxplpEZvMZZWYr6fKOabSWtwi7ux5NLZfaZPmDdckkk1aNoYwE8tio7/AOFStdGBSwRScYUN0zUba+vk7XhBnHHDYX/Gpcn0R0RiurMu8tXEmVkbGeDW74X8Oan4gvjDb+WsCjMs0gIVPxHU+1UxcRTIjCPaSTvHUV1mj+JZorBNMCqkK/d8sY+pPqaJSsgUdTcl8OmDSLrSlMQlmgZAxYBSccEn+tFQzy3F3YXEau7SGJgpUZPSiueM2jX2dzdQsofeZGjlJIjJHIHIJPY+3HSnpcOz7NqxlTyolVRk+uev41k2moRZSGOJtuOpJwB9TTpHtBtCpExBySRwPWsvaO9rGPKaa3rRNI1vKrBgN6qVYrnvzzn6fjWTqE2qXcsM0DGN0JUiGTaX9D2H5VMl3YoHEkERHGGVBR9qsI0Zi0bN0UeWCcU1Wa6ByoksJ2+zKl81x5/mH5gQxI475/DBrXdGjmeOMlmIDICoxyOBn8Oaxo7+zyrRxDn7x2ioX1W0DOpi4zxk4/MVMq2uwKKNqdAGSREWQMCNowGGPVc9DTYnEwjxBPFIVBO4DjP0JOM+1ZcV1ZswC2i/McggEA/Sr4iDDcYQmOvHv+dQ8VFdA5C+ILuVVR1dVV9oTjJGOvTpWB43tSdDjkxlklDMcjgEEdB05xW2qxOCwGN3VgcZrnPFniXQNHtJrG/naSeRMeRAoaT2znhex5/KnTxXPK0U2HLbU4G2jZi+4JgYAyOale1RuTGpP1H9ahhmjuIUlT7siggNTSpRsgvt9A5xXcVGxFcrHCFVYSpJ5Ixj8aktSEkRiePeo5cSHJycetCMA2OvtQ9hrc6v/hKE8NxW1wyCSRztKbtpK4557cY5orzXxDPdXGrtBcZjSEbQCMZ9SPX/AOtRRGjFq7JlVd9D3eazgu8oIGQZ3Ky8Z96xrjSpvMJjnKrjcFK5O7/OK6BZ0BZWwPTmpNw2bhgf3hntXiwqyp6FtJnAyx3ULGN0fJOckdOau/2bctGTGBIR0zwD+NdoILWZAjIj47kdKpXVksRYE7QeQV6V0QxMZaNEuJQsobSOALLCsjgfMx/WpobPT0aQGEOXHRsk47Y9KqTvHaRNJK48oHlzkAqeR9TWBf8AjFYZc2cSlSCAz5/MCiNKU9jenQnU+FHWspUpFbRAE8qemPX6U2WWe2dd5XewOArZzXmT67emXBuZSqNlcueDUcuqTzOZZJmZs53Mea1WD11Z1/Uf734HXeJPFa6Ro87Wk6G6/wBWoBztY/xfgP1xXmFpA7xzX1y/mXUgLoHOT7sfU1NqMhntBuOVM2Tn04zV20VDBggbtu3PtXXCEaUdOpNLCxdZrsJpNybnTYwzZkjyuT35qwb2WLIdOKxLZzp2pPATiNzlfxrVuJG8ravRu/pWkkjgalFuL3Q2bUgcgZBrU8K2h1LWIWkOIo2BKn+I5rm2XB5PWux8JWcsZF1BKk8itxaxITI+P0xSatHQm+upraHr9prms33h7XIYbyz+0yCNZhlowGI+Vuq4x2NFedQz3ukeJpLu9hmt7l5d0isu1gS3PB96KfI+hDZ7DJcZJZXP3Rkge/8A9arKTygM2CVxn61WtNL1W8kWW3srhgCCWETYUjPTNdRpnhpUR7rW5ggHS1RhvP8Aven0FebGhOpokaOSWrMiCQtKPmwyngE9/arl7p2qPZ7hHFGGOUFySu76gDJH5VcnlsRdRzQafbQmE5TCc8dMnvUF3fSzuZZGZye5Oa78PlNp81V/IwlibfCjybxLbaxZXhbUMlZD8jo2Yz7D0+nFc+XLbQf72Pzr2W8ig1C3e2uUDwyDDA/zHoR615FrOnyaPqU9s53eWchv7w6g/lW9egqfw7HsYLGuuuWWjX5EDc4PqSabIp8qNO5yakABKg/3akdR5qj0WubmPUcLozr6M/Zo1Az8x49aWznCbo2kUSKBhWOCasXABaEfjUUdpELuW4YjcqAYPQe/5VrTabszzMbGVO9WLtsipqkiy7CyFJFPDdh9asWjXsphjjtp3aU7UVYyS59B6/hW14dtrNr03V2EWOM8bxnyx/sg8Fvr07c9NzWfiO1gUg0Cyt4VjkVnklTe0nruJ6Z6HFXNJaJHlOpOcuaW5yMUjQ3DkxlJYmKtuAypHBBzXY+GvFVtbXUaanbx+USNt3AoDxHsSBww9RXC6h5t6L5yqJLNM1wojGFIJyQB6D0rOs7828iqyspzhl7GjdEtNPXc9r+IkFj4h0mD7VFF/aUYD2d9GciRfQnup9DyD+BYrgk1Vo9GuLCWVvKAM1t/sOOoHsR/IUVK0Ha57XJqNzHLJIJ9gLYBBIyAQCw6569MVz0t3cWGqtaTXH2gOvmRSd3X39xxn65ooq8PJqdkRUSaLhkJw2flNWIBklTyKKK6pt2uZxSILu3MMiuP9W/H0NeffEODF7bygcywhT74bH8jRRWFaTcNTtwKtWVvP8jmM/vQKfI37wY9KKK4Op9OtiK7+Vl9qrS5FwG6h+frgdPzxRRWkHqjz8fFOlK/QfeyCwsgfvSsOB71RsoGlj2v8zs2+RvT0FFFazdo3PKwlNTrRi9jQ8oqNucAfdPdage23SCR4S+O6ciiisIzaPYxGEp1Fd7l2GJpmLTxlYgu3YTjfn19v50UUVnKpK5tSwVCMF7t/U//2Q==" style="width:38px;height:38px;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid var(--accent);" alt="Amar">
+    <div style="flex:1;">
+      <div style="color:#fff;font-weight:700;font-size:0.88rem;" id="chatTitle" data-fr="Assistant d'Amar Dia" data-en="Amar Dia's Assistant">Assistant d'Amar Dia</div>
+      <div style="color:rgba(255,255,255,0.6);font-size:0.72rem;" id="chatStatus" data-fr="● En ligne" data-en="● Online">● En ligne</div>
+    </div>
+    <button id="chatClose" style="background:none;border:none;color:rgba(255,255,255,0.7);cursor:pointer;font-size:1.2rem;padding:2px;">✕</button>
+  </div>
+  <div id="chatBody" style="flex:1;overflow-y:auto;padding:1rem;display:flex;flex-direction:column;gap:0.75rem;max-height:340px;min-height:200px;background:#f8f5ef;"></div>
+  <div id="chatSuggs" style="padding:0 1rem 0.6rem;display:flex;flex-wrap:wrap;gap:0.4rem;"></div>
+  <div style="padding:0.75rem 1rem;border-top:1px solid #ede9e0;display:flex;gap:0.5rem;background:#fff;">
+    <input id="chatInput" type="text" style="flex:1;border:1px solid #ede9e0;border-radius:6px;padding:0.55rem 0.85rem;font-family:'DM Sans',sans-serif;font-size:0.85rem;outline:none;color:#0f1623;transition:border-color 0.2s;" placeholder="Posez une question...">
+    <button id="chatSend" style="background:var(--blue);color:#fff;border:none;border-radius:6px;width:38px;height:38px;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">➤</button>
+  </div>
+</div>
+
+<script>
+const T = {
+  fr: {
+    welcome:"👋 Bonjour ! Je suis l'assistant d'**Amar Dia**. Posez-moi vos questions sur son profil, ses projets ou comment le contacter.",
+    placeholder:"Posez une question...",
+    notif:"💬 Parlez à mon assistant IA !",
+    suggs:["Qui est Amar ?","Ses compétences ?","Projets à venir ?","Le contacter ?"],
+    sending:"Envoi...", sent:"Envoyé ✓", err:"Erreur – réessayez",
+    aboutHtml:"Basé à <strong>Montréal</strong>, je suis un <strong>Programmeur-Analyste Full Stack</strong> diplômé d'un <strong>AEC au CDI Collège</strong>. Je maîtrise le développement web (React, Node.js, Express, PHP, Python), les bases de données relationnelles et NoSQL (MySQL, SQLite, MongoDB), le mobile Android (Kotlin) et la création de chatbots IA.<br><br>Formé à analyser les besoins, modéliser, développer et documenter des applications complètes. Mon parcours chez <strong>Groupe ALDO</strong> (SAP), <strong>Tecnic</strong> et la co-fondation de l'<strong>ACAFIS</strong> m'ont forgé rigueur, organisation et sens des responsabilités."
+  },
+  en: {
+    welcome:"👋 Hello! I'm **Amar Dia's** assistant. Ask me anything about his profile, projects or how to reach him.",
+    placeholder:"Ask a question...",
+    notif:"💬 Talk to my AI assistant!",
+    suggs:["Who is Amar?","His skills?","Upcoming projects?","Contact him?"],
+    sending:"Sending...", sent:"Sent ✓", err:"Error – try again",
+    aboutHtml:"Based in <strong>Montreal</strong>, I am a <strong>Full Stack Programmer-Analyst</strong> with an <strong>AEC diploma from CDI College</strong>. I master web development (React, Node.js, Express, PHP, Python), relational and NoSQL databases (MySQL, SQLite, MongoDB), Android mobile (Kotlin) and AI chatbot development.<br><br>Trained to analyze requirements, model, develop and document complete applications. My background at <strong>Groupe ALDO</strong> (SAP), <strong>Tecnic</strong> and co-founding <strong>ACAFIS</strong> built strong discipline and accountability."
+  }
+};
+
+let lang = 'fr';
+const msgs = [];
+let open = false;
+
+function applyLang(l) {
+  lang = l;
+  document.documentElement.lang = l;
+  document.querySelectorAll('[data-fr][data-en]').forEach(el => {
+    const v = el.getAttribute('data-' + l);
+    if (v) el.textContent = v;
+  });
+  document.getElementById('aboutTxt').innerHTML = T[l].aboutHtml;
+  document.getElementById('chatInput').placeholder = T[l].placeholder;
+  document.getElementById('chatNotif').textContent = T[l].notif;
+  document.querySelectorAll('.lang-btn,.mob-lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === l));
+  buildSuggs();
+}
+
+document.querySelectorAll('.lang-btn,.mob-lang-btn').forEach(b => b.addEventListener('click', () => applyLang(b.dataset.lang)));
+
+// Hamburger
+const ham = document.getElementById('hamburger');
+const mob = document.getElementById('mobileMenu');
+ham.addEventListener('click', () => { ham.classList.toggle('open'); mob.classList.toggle('open'); document.body.style.overflow = mob.classList.contains('open') ? 'hidden' : ''; });
+document.querySelectorAll('.mob-link,.m-cv').forEach(a => a.addEventListener('click', () => { ham.classList.remove('open'); mob.classList.remove('open'); document.body.style.overflow = ''; }));
+
+// Tabs
+document.querySelectorAll('.tab-btn').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('.tab-btn').forEach(x => x.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(x => x.classList.remove('active'));
+  b.classList.add('active');
+  document.getElementById('tab-' + b.dataset.tab).classList.add('active');
+}));
+
+// Fade-up
+new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }), {threshold:0.08}).observe
+  && document.querySelectorAll('.fu').forEach(el => new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }), {threshold:0.08}).observe(el));
+
+// Formspree
+const form = document.querySelector('.cf');
+if (form) form.addEventListener('submit', async e => {
+  e.preventDefault();
+  const btn = form.querySelector('.fb'), ok = document.getElementById('formOk');
+  btn.textContent = T[lang].sending; btn.disabled = true;
+  try {
+    const r = await fetch(form.action, {method:'POST', body:new FormData(form), headers:{'Accept':'application/json'}});
+    if (r.ok) { ok.style.display = 'block'; ok.textContent = lang === 'fr' ? '✅ Message envoyé ! Je vous répondrai sous peu.' : '✅ Message sent! I will reply shortly.'; form.reset(); btn.textContent = T[lang].sent; }
+    else { btn.textContent = T[lang].err; btn.disabled = false; }
+  } catch { btn.textContent = T[lang].err; btn.disabled = false; }
+});
+
+// Chat
+const chatBtn = document.getElementById('chatBtn');
+const chatBox = document.getElementById('chatBox');
+const chatClose = document.getElementById('chatClose');
+const chatInput = document.getElementById('chatInput');
+const chatSend = document.getElementById('chatSend');
+const chatBody = document.getElementById('chatBody');
+const chatNotif = document.getElementById('chatNotif');
+
+function buildSuggs() {
+  const c = document.getElementById('chatSuggs');
+  if (!c || chatBody.children.length > 1) { if(c) c.style.display='none'; return; }
+  c.innerHTML = '';
+  T[lang].suggs.forEach(s => {
+    const b = document.createElement('button');
+    b.className = 'csb'; b.textContent = s;
+    b.onclick = () => { chatInput.value = s; sendMsg(); };
+    c.appendChild(b);
+  });
+}
+
+chatBtn.addEventListener('click', () => {
+  open = !open;
+  chatBox.style.display = open ? 'flex' : 'none';
+  chatNotif.style.display = 'none';
+  if (open && chatBody.children.length === 0) { addMsg('a', T[lang].welcome); buildSuggs(); }
+  if (open) setTimeout(() => chatInput.focus(), 100);
+});
+chatClose.addEventListener('click', () => { open = false; chatBox.style.display = 'none'; });
+
+function addMsg(role, text) {
+  const d = document.createElement('div');
+  d.className = `cmsg cm${role}`;
+  d.innerHTML = `<div class="cbub">${text.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>')}</div>`;
+  chatBody.appendChild(d); chatBody.scrollTop = chatBody.scrollHeight;
+}
+function addTyping() {
+  const d = document.createElement('div');
+  d.className = 'cmsg cma'; d.id = 'typing';
+  d.innerHTML = '<div class="cbub ctyp"><span></span><span></span><span></span></div>';
+  chatBody.appendChild(d); chatBody.scrollTop = chatBody.scrollHeight;
+}
+function rmTyping() { const t = document.getElementById('typing'); if(t) t.remove(); }
+
+async function sendMsg() {
+  const txt = chatInput.value.trim();
+  if (!txt) return;
+  chatInput.value = ''; chatSend.disabled = true;
+  document.getElementById('chatSuggs').style.display = 'none';
+  addMsg('u', txt);
+  msgs.push({role:'user', content:`[Lang:${lang === 'fr' ? 'French' : 'English'}] ${txt}`});
+  addTyping();
+  try {
+    const r = await fetch('/api/chat', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({messages:msgs})});
+    const d = await r.json();
+    const reply = d.reply || d.error || (lang==='fr'?'Désolé, une erreur est survenue.':'Sorry, an error occurred.');
+    rmTyping(); msgs.push({role:'assistant',content:reply}); addMsg('a', reply);
+  } catch { rmTyping(); addMsg('a', lang==='fr'?'Erreur de connexion. Contactez Amar : Diaamar757@gmail.com':'Connection error. Contact Amar: Diaamar757@gmail.com'); }
+  chatSend.disabled = false; chatInput.focus();
+}
+chatSend.addEventListener('click', sendMsg);
+chatInput.addEventListener('keydown', e => { if (e.key==='Enter' && !e.shiftKey) { e.preventDefault(); sendMsg(); } });
+chatInput.addEventListener('focus', () => chatInput.style.borderColor='var(--blue)');
+chatInput.addEventListener('blur', () => chatInput.style.borderColor='#ede9e0');
+setTimeout(() => { if (!open) { chatNotif.style.display='flex'; chatNotif.textContent=T[lang].notif; } }, 3000);
+</script>
+</body>
+</html>
